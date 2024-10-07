@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGWEB-LabGeo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #001f3f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .icon {
+            width: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+        }
+
+        .sidebar button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar button img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .map-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-image {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-button {
+            margin-left: 10px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slide-button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background-color: #001f3f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        let currentImageIndex = 0;
+        const images = [
+            "https://github.com/gabri-silva/APAs-Tocantins/raw/main/MAPA_USO_COB_ARAG_APANA_2023.png",
+            "https://via.placeholder.com/600x400?text=Outra+Imagem" // Coloque o link da segunda imagem aqui
+        ];
+
+        function changeImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.getElementById('mapImage').src = images[currentImageIndex];
+        }
+
+        function redirectToShapeFiles() {
+            window.location.href = "https://github.com/gabri-silva/APAs-Tocantins";
+        }
+
+        window.onload = function() {
+            // Exibir o popup de boas-vindas
+            alert("Bem-vindo ao SIGWEB-LabGeo. Essa ainda é uma versão beta. Em caso de eventuais erros, enviar e-mail para gabliame0231@gmail.com");
+            
+            // Exibir o ano atual no rodapé
+            const yearElement = document.getElementById('year');
+            yearElement.textContent = new Date().getFullYear();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/computer.png" alt="Ícone do Computador" class="icon">
+        <h1>SIGWEB-LabGeo</h1>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <button onclick="redirectToShapeFiles()">
+                <img src="https://img.icons8.com/ios-filled/20/ffffff/file.png" alt="ShapeFiles">
+                ShapeFiles
+            </button>
+            <button>
+                <img src="https://img.icons8.com/ios-filled/20/ffffff/info.png" alt="Sobre o projeto">
+                Sobre o projeto
+            </button>
+            <button>
+                <img src="https://img.icons8.com/ios-filled/20/ffffff/globe.png" alt="Laboratório de Geotecnologias">
+                Laboratório de Geotecnologias da UFNT (Cimba)
+            </button>
+            <button>
+                <img src="https://img.icons8.com/ios-filled/20/ffffff/map.png" alt="Mapas">
+                Mapas
+            </button>
+            <button>
+                <img src="https://img.icons8.com/ios-filled/20/ffffff/cloud-computing.png" alt="Plataforma SIGWEB-LabGeo">
+                Plataforma SIGWEB-LabGeo
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <h2>Uso e Cobertura do Solo</h2>
+            <div class="map-container">
+                <img id="mapImage" src="https://github.com/gabri-silva/APAs-Tocantins/raw/main/MAPA_USO_COB_ARAG_APANA_2023.png" alt="Mapa de Uso e Cobertura do Solo" class="map-image">
+                <button class="slide-button" onclick="changeImage()">
+                    <img src="https://img.icons8.com/ios-filled/24/ffffff/right.png" alt="Mudar Imagem" style="vertical-align: middle;">
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>SILVA, Gabriel Almeida &copy; <span id="year"></span></p>
+    </footer>
+</body>
+</html>
